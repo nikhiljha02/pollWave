@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import pollQuestionSChema from "./pollSchema";
 
 const pollResponse = new mongoose.Schema(
   {
@@ -21,4 +20,6 @@ const pollResponse = new mongoose.Schema(
   { timestamps: true },
 );
 
-const pollResponded = mongoose.model("pollResponse", pollQuestionSChema);
+const pollResponded = mongoose.model("pollResponse", pollResponse);
+
+export default pollResponded;

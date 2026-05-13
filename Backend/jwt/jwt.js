@@ -7,7 +7,13 @@ const generateAccessToken = (payload) => {
   });
 };
 const verifyAccessToken = (token) => {
-  return jwt.verify(token, process.env.JWT_ACCESS_SECRET);
+  try {
+    return jwt.verify(token, process.env.JWT_ACCESS_SECRET);
+  } catch (err) {
+    console.log("JWT ERROR NAME:", err.name);
+    console.log("JWT ERROR MESSAGE:", err.message);
+    return { status: "error", message: err.message, name: err.name };
+  }
 };
 
 const generateRefreshToken = (payload) => {
@@ -16,7 +22,13 @@ const generateRefreshToken = (payload) => {
   });
 };
 const verifyRefreshToken = (token) => {
-  return jwt.verify(token, process.env.JWT_REFRESH_SECRET);
+  try {
+    return jwt.verify(token, process.env.JWT_REFRESH_SECRET);
+  } catch (error) {
+    console.log("JWT ERROR NAME:", err.name);
+    console.log("JWT ERROR MESSAGE:", err.message);
+    throw err.name;
+  }
 };
 
 export {

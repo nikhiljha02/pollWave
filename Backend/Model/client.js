@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
 
 const clientSchema = new mongoose.Schema(
   {
@@ -29,6 +30,14 @@ const clientSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-const Client = mongoose.model("pollClient", clientSchema);
+clientSchema.pre("save", async function () {
+  if (!this.isModified("password")) return;
+  this.password = await bcrypt.hash(this.password, 12);
+});
 
+clientSchema.methods.comparePassword = function (passInput) {
+  return bcrypt.compare(passInput, this.password);
+};
+
+const Client = mongoose.model("pollClient", clientSchema);
 export default Client;
