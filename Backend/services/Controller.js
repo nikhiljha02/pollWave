@@ -4,14 +4,16 @@ import ApiResponse from "../utils/ApiResponse.js";
 const registerController = async (req, res) => {
   const user = await authServices.register(req.body);
   res.cookie("AccessTokens", user.accessToken, {
-    httpOnly: true, // prevents JS access (important security)
-    secure: false, // true in production (HTTPS)
-    sameSite: "lax",
+    httpOnly: true,
+    secure: true,
+    sameSite: "None",
+    maxAge: 7 * 24 * 60 * 60 * 1000,
   });
   res.cookie("refreshToken", user.refreshToken, {
-    httpOnly: true, // prevents JS access (important security)
-    secure: false, // true in production (HTTPS)
-    sameSite: "lax",
+    httpOnly: true,
+    secure: true,
+    sameSite: "None",
+    maxAge: 7 * 24 * 60 * 60 * 1000,
   });
   ApiResponse.created(res, "Registration Completed", user);
 };
@@ -19,14 +21,17 @@ const loginController = async (req, res) => {
   const user = await authServices.login(req.body);
 
   res.cookie("AccessTokens", user.accessToken, {
-    httpOnly: true, // prevents JS access (important security)
-    secure: false, // true in production (HTTPS)
-    sameSite: "lax",
+    httpOnly: true,
+    secure: true,
+    sameSite: "None",
+    maxAge: 7 * 24 * 60 * 60 * 1000,
   });
+
   res.cookie("refreshToken", user.refreshToken, {
-    httpOnly: true, // prevents JS access (important security)
-    secure: false, // true in production (HTTPS)
-    sameSite: "lax",
+    httpOnly: true,
+    secure: true,
+    sameSite: "None",
+    maxAge: 7 * 24 * 60 * 60 * 1000,
   });
   ApiResponse.created(res, "login successful", user);
 };
@@ -35,13 +40,14 @@ const logout = async (req, res) => {
   const signOff = await authServices.logout(req.user.email);
   res.clearCookie("AccessTokens", {
     httpOnly: true,
-    sameSite: "lax",
-    secure: false,
+    secure: true,
+    sameSite: "None",
   });
+
   res.clearCookie("refreshToken", {
-    httpOnly: true, // prevents JS access (important security)
-    secure: false, // true in production (HTTPS)
-    sameSite: "lax",
+    httpOnly: true,
+    secure: true,
+    sameSite: "None",
   });
   ApiResponse.ok(res, "log out");
 };
