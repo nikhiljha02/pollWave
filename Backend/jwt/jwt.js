@@ -10,8 +10,6 @@ const verifyAccessToken = (token) => {
   try {
     return jwt.verify(token, process.env.JWT_ACCESS_SECRET);
   } catch (err) {
-    console.log("JWT ERROR NAME:", err.name);
-    console.log("JWT ERROR MESSAGE:", err.message);
     return { status: "error", message: err.message, name: err.name };
   }
 };
@@ -25,8 +23,6 @@ const verifyRefreshToken = (token) => {
   try {
     return jwt.verify(token, process.env.JWT_REFRESH_SECRET);
   } catch (error) {
-    console.log("JWT ERROR NAME:", err.name);
-    console.log("JWT ERROR MESSAGE:", err.message);
     throw err.name;
   }
 };

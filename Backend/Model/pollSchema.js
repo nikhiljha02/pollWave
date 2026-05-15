@@ -18,15 +18,23 @@ const pollSchema = new mongoose.Schema(
       },
     ],
 
+    allowAnonymous: {
+      type: Boolean,
+      default: false,
+    },
+
     clientId: {
       type: mongoose.Schema.Types.ObjectId,
+      select: false,
     },
     isActive: {
       type: Boolean,
       default: false,
+      select: false,
     },
     expiresAt: {
       type: Date,
+      select: false,
     },
   },
   { timestamps: true },

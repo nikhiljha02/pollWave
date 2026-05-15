@@ -6,15 +6,15 @@ const pollResponse = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
     },
     voterId: {
-      types: mongoose.Schema.Types.ObjectId,
+      type: String,
+      required: true,
     },
     voterIp: {
       type: String,
     },
-    voterEmail: {
+    voterName: {
       type: String,
       trim: true,
-      unique: true,
     },
   },
   { timestamps: true },

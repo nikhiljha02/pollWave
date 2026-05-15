@@ -1,5 +1,6 @@
 import crypto from "crypto";
 import Client from "../../Model/client.js";
+import APiError from "../../utils/api-error.js";
 
 import {
   generateAccessToken,
@@ -13,7 +14,6 @@ const hashTokenProcess = (token) => {
 };
 
 const ipConfig = async (req) => {
-  console.log(req);
   let ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
 
   if (ip.includes("::ffff:")) {
@@ -25,15 +25,13 @@ const ipConfig = async (req) => {
 const register = async ({ name, email, password }) => {
   let existingUser = await Client.findOne({ email });
   if (existingUser) {
-    throw APiError.conflict("Email Already exists, User already registered");
+    throw APiError.conflict("Email Already exists");
   }
 
   let accessToken = generateAccessToken({ name: name, email: email });
   let refreshToken = generateRefreshToken({ name: name, email: email });
 
   let hashToken = hashTokenProcess(refreshToken);
-  console.log(hashToken);
-  // console.log(refreshToken == hashRefreshToken);
 
   let registerUser = await Client.create({
     name,
@@ -52,6 +50,7 @@ const register = async ({ name, email, password }) => {
 
 const login = async ({ email, password }) => {
   let loginUser = await Client.findOne({ email }).select("+password");
+
   if (!loginUser) {
     throw APiError.notFound("user with this email is not Registered");
   }
@@ -66,6 +65,7 @@ const login = async ({ email, password }) => {
   let hashToken = hashTokenProcess(refreshToken);
 
   loginUser.refreshToken = hashToken;
+  loginUser.login = true;
 
   await loginUser.save({ validateBeforeSave: false });
 
@@ -75,14 +75,24 @@ const login = async ({ email, password }) => {
 
   return { user: userObject, accessToken, refreshToken };
 };
+const user = async (email) => {
+  let loginUser = await Client.findOne({ email });
 
-const logout = async (userId) => {
-  let user = await Client.findById(userId);
+  if (!loginUser) {
+    throw APiError.notFound("user Not found");
+  }
+
+  return loginUser;
+};
+
+const logout = async (email) => {
+  let user = await Client.findOne({ email });
   if (!user) {
     throw APiError.notFound("User not found");
   }
   user.refreshToken = null;
   user.login = false;
+
   await user.save({ validateBeforeSave: false });
 };
-export { ipConfig, register, login, logout };
+export { ipConfig, register, login, logout, user };

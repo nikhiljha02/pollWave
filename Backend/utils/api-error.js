@@ -18,6 +18,7 @@ class APiError extends Error {
     return new APiError(400, message);
   }
   static unAuthorized(message = "UnAuthorized") {
+    // console.log('first',anonymous)
     return new APiError(401, message);
   }
   static conflict(message = "Conflict - user already exists") {
@@ -27,7 +28,7 @@ class APiError extends Error {
     return new APiError(412, message);
   }
   static notFound(message = "no Access") {
-    return new APiError(412, message);
+    return new APiError(404, message);
   }
 }
 

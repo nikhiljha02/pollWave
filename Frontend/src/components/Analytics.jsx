@@ -23,43 +23,7 @@ export default function Analytics() {
       </header>
 
       {/* MAIN */}
-      <h1 style={{ textAlign: "center", margin:'10px'}}>Analytics</h1>
-      <main style={styles.main}>
-        {/* Stats */}
-        <div style={styles.statsGrid}>
-          {[
-            { label: "Total Polls", value: "24" },
-            { label: "Total Votes", value: "1.2K" },
-            { label: "Active Polls", value: "5" },
-            { label: "Engagement", value: "78%" },
-          ].map((s) => (
-            <div key={s.label} style={styles.card}>
-              <div style={styles.cardLabel}>{s.label}</div>
-              <div style={styles.cardValue}>{s.value}</div>
-            </div>
-          ))}
-        </div>
-
-        {/* Recent Polls */}
-        <section style={styles.section}>
-          <h3 style={styles.sectionTitle}>Recent Polls</h3>
-
-          {[
-            { q: "Best remote work setup?", votes: 320 },
-            { q: "Favorite productivity tool?", votes: 210 },
-            { q: "Best communication tool?", votes: 540 },
-          ].map((p) => (
-            <div key={p.q} style={styles.pollCard}>
-              <div>
-                <div style={styles.pollQuestion}>{p.q}</div>
-                <div style={styles.pollMeta}>{p.votes} votes</div>
-              </div>
-
-              <button style={styles.viewBtn}>View</button>
-            </div>
-          ))}
-        </section>
-      </main>
+      <h1>Analytics</h1>
     </div>
   );
 }
