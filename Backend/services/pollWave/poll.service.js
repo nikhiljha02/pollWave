@@ -18,7 +18,10 @@ const pollCreate = async ({ question, options, allowAnonymous, expiresAt }) => {
 };
 
 const pollData = async (pollId) => {
-  let pollQ = await pollQuestionSChema.findById(pollId).select("+expiresAt");
+  let pollQ = await pollQuestionSChema
+    .findById(pollId)
+    .select("+expiresAt")
+    .select("+isActive");
   if (!pollQ) {
     throw APiError.notFound("This poll is not available");
   }
@@ -29,6 +32,7 @@ const pollData = async (pollId) => {
     return { expireStatus: true, message: "Poll has expired", data: pollQ };
   } else {
     let resObj = pollQ.toObject();
+    delete resObj.isActive;
     resObj.allowAnonymous = true;
     return resObj;
   }
