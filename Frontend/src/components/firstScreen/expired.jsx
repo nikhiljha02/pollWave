@@ -20,7 +20,7 @@ export default function PollExpired({ mergedOptions }) {
     "#F59E0B", // yellow
     "#8B5CF6", // purple
   ];
-  console.log(mergedOptions);
+
   const [mounted, setMounted] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [tick, setTick] = useState(0);

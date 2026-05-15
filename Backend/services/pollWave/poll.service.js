@@ -10,9 +10,9 @@ const pollCreate = async ({ question, options, allowAnonymous, expiresAt }) => {
     expiresAt,
     isActive: true,
   };
-  console.log(pollData);
+
   let pollCreate = await pollQuestionSChema.create(pollData);
-  console.log(pollCreate);
+
   let resObject = pollCreate._id;
   return { resObject };
 };
@@ -22,7 +22,7 @@ const pollData = async (pollId) => {
   if (!pollQ) {
     throw APiError.notFound("This poll is not available");
   }
-  console.log(pollQ);
+  
 
   if (pollQ.expiresAt < new Date()) {
     pollQ.isActive = false;

@@ -8,11 +8,11 @@ const questionSubmit = async (req, res) => {
 
 const getPollData = async (req, res) => {
   const data = await pollServices.pollData(req.body.id);
-  // console.log(data);
+
   ApiResponse.ok(res, "", data);
 };
 const submitVote = async (req, res) => {
-  console.log(req.body);
+
   const data = await pollServices.pollVote(req.body);
   ApiResponse.ok(res, "vote submitted", data);
 };

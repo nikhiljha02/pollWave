@@ -93,7 +93,7 @@ function ShowPoll() {
     };
 
     const handlePollUpdate = (data) => {
-      console.log("pollUpdate", data);
+   
       setResults(data);
     };
 

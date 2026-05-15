@@ -31,8 +31,6 @@ io.on("connection", (socket) => {
 
     polls[pollId][optionId] = (polls[pollId][optionId] || 0) + 1;
 
-    console.log(polls);
-
     io.to(pollId).emit("pollUpdate", polls[pollId]);
   });
 

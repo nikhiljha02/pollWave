@@ -6,7 +6,7 @@ export default async function pollResponse(req, res, next) {
     const pollId = req.body.pollId;
     const name = req.body.name;
 
-    console.log("voterId:", voterId);
+  
 
     if (!voterId) {
       throw APiError.badRequest("voterId missing");
@@ -27,7 +27,7 @@ export default async function pollResponse(req, res, next) {
       voterName: name,
     });
 
-    console.log("Saved:", newUser);
+  
 
     next();
   } catch (err) {

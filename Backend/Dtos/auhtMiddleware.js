@@ -2,7 +2,7 @@ import APiError from "../utils/api-error.js";
 import { verifyAccessToken } from "../jwt/jwt.js";
 
 const authenticate = (req, res, next) => {
-  console.log(req.body);
+ 
 
   const token = req.cookies?.AccessTokens;
 

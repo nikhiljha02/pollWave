@@ -37,7 +37,7 @@ export default function Dashboard() {
       [id]: !prev[id],
     }));
   };
-  console.log(expiryMap);
+
   // Handle Question Change
   function handleQuestionChange(e) {
     setPollData({
@@ -113,7 +113,7 @@ export default function Dashboard() {
     );
 
     let response = await res.json();
-    console.log(response);
+
     if (response.success) {
       showPopup(
         `https://pollwave-0qpi.onrender.com/poll/${response.data.resObject}`,
@@ -136,7 +136,7 @@ export default function Dashboard() {
       console.log(error);
     }
   }
-  console.log(anonymousMap);
+ 
 
   return (
     <div className="min-h-screen bg-[#070A14] text-white font-sans ">

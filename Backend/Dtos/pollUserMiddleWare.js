@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export default async function assignUserVoteId(req, res, next) {
   let userVoterId = req.cookies._poll_idUserId;
-  console.log("first", userVoterId);
+
   if (!userVoterId) {
     userVoterId = uuidv4();
     res.cookie("_poll_idUserId", userVoterId, {
