@@ -172,7 +172,7 @@ export default function PollWaveLogin() {
     const payload =
       reqType === "signup" ? { name, email, password } : { email, password };
 
-    let res = await fetch(`http://localhost:8080/auth/${reqType}`, {
+    let res = await fetch(`https://pollwave-0qpi.onrender.com/auth/${reqType}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",

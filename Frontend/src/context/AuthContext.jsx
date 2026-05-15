@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     async function fetchUser() {
       try {
-        const res = await fetch("http://localhost:8080/auth/me", {
+        const res = await fetch("https://pollwave-0qpi.onrender.com/auth/me", {
           method: "GET",
           credentials: "include",
         });

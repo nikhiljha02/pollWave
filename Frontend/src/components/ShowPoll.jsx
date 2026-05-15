@@ -45,12 +45,15 @@ function ShowPoll() {
       try {
         let _id = user?._id;
 
-        const res = await fetch("http://localhost:8080/poll/pollData", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-          body: JSON.stringify({ id, userId: _id }),
-        });
+        const res = await fetch(
+          "https://pollwave-0qpi.onrender.com/poll/pollData",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include",
+            body: JSON.stringify({ id, userId: _id }),
+          },
+        );
 
         const response = await res.json();
 
@@ -143,12 +146,15 @@ function ShowPoll() {
 
         setBtnLoading(true);
 
-        const res = await fetch("http://localhost:8080/poll/vote", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-          body: JSON.stringify({ pollId: id, optionId: selected, name }),
-        });
+        const res = await fetch(
+          "https://pollwave-0qpi.onrender.com/poll/vote",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include",
+            body: JSON.stringify({ pollId: id, optionId: selected, name }),
+          },
+        );
 
         const response = await res.json();
 

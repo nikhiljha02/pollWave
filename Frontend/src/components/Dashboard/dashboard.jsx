@@ -102,18 +102,21 @@ export default function Dashboard() {
       return !expiryMap[id] || Date.now() < expiryMap[id];
     };
 
-    let res = await fetch("http://localhost:8080/poll/pollCreate", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify(pollData),
-    });
+    let res = await fetch(
+      "https://pollwave-0qpi.onrender.com/poll/pollCreate",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(pollData),
+      },
+    );
 
     let response = await res.json();
     console.log(response);
     if (response.success) {
       showPopup(
-        `http://localhost:8080/poll/${response.data.resObject}`,
+        `https://pollwave-0qpi.onrender.com/poll/${response.data.resObject}`,
         "success",
       );
     }
@@ -121,7 +124,7 @@ export default function Dashboard() {
 
   async function handleSignOut() {
     try {
-      await fetch("http://localhost:8080/auth/logout", {
+      await fetch("https://pollwave-0qpi.onrender.com/auth/logout", {
         method: "POST",
         credentials: "include",
       });
