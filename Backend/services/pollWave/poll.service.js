@@ -35,7 +35,7 @@ const pollData = async (pollId) => {
 };
 
 const pollVote = async ({ pollId, optionId }) => {
-  let poll = await pollQuestionSChema.findById(pollId);
+  let poll = await pollQuestionSChema.findById(pollId).select("+isActive");
   if (!poll) {
     throw APiError.notFound("This poll is not available");
   }
