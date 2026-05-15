@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://pollwave-0qpi.onrender.com",
+    origin: "https://poll-wave-psi.vercel.app",
     credentials: true,
   }),
 );
