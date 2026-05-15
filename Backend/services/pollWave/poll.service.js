@@ -22,7 +22,6 @@ const pollData = async (pollId) => {
   if (!pollQ) {
     throw APiError.notFound("This poll is not available");
   }
-  
 
   if (pollQ.expiresAt < new Date()) {
     pollQ.isActive = false;
@@ -40,6 +39,7 @@ const pollVote = async ({ pollId, optionId }) => {
   if (!poll) {
     throw APiError.notFound("This poll is not available");
   }
+  console.log(poll);
   if (!poll.isActive) {
     throw APiError.forBidden("Poll Expired");
   }
