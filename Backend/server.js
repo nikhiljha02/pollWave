@@ -11,7 +11,7 @@ const server = http.createServer(app);
 // 2. Attach socket to same server
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:5173", "http://10.173.47.62:5173"],
+    origin: "https://pollwave-0qpi.onrender.com",
     methods: ["GET", "POST"],
     credentials: true,
   },
