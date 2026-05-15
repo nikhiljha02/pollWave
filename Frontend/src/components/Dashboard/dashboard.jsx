@@ -116,7 +116,7 @@ export default function Dashboard() {
 
     if (response.success) {
       showPopup(
-        `https://pollwave-0qpi.onrender.com/poll/${response.data.resObject}`,
+        `https://poll-wave-psi.vercel.app/poll/${response.data.resObject}`,
         "success",
       );
     }
@@ -136,7 +136,6 @@ export default function Dashboard() {
       console.log(error);
     }
   }
- 
 
   return (
     <div className="min-h-screen bg-[#070A14] text-white font-sans ">
